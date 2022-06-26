@@ -1,0 +1,15 @@
+version: 'version'
+services:
+  dev-db:
+    image: postgres:latest 
+    ports: 
+      - 5434:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Jkl34256@
+      POSTGRES_DB: bookmark
+    networks: 
+      - MDevelopment
+networks: 
+  MDevelopment:
+   
