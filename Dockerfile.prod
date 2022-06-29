@@ -1,10 +1,38 @@
-FROM node:18.3.0
+FROM node:18.3.0 As development
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
+
 RUN yarn install
 
-COPY . /app
+COPY . .
 
 RUN yarn build
+
+
+FROM node:18.3.0 as production
+
+ARG NODE_ENV=production
+
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package*.json yarn.lock ./
+
+RUN yarn install
+
+COPY --from=development /usr/src/app/dist ./dist
+
+COPY --from=development /usr/src/app/package.json .
+
+COPY --from=development /usr/src/app/.env .
+
+CMD [ "node", "dist/main" ]
+
+
+
+
+
+
