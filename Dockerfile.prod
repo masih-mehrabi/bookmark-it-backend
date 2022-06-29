@@ -29,7 +29,7 @@ COPY --from=development /usr/src/app/package.json .
 
 COPY --from=development /usr/src/app/.env .
 
-CMD [ "node", "dist/main" ]
+
 
 
 
