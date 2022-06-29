@@ -13,7 +13,7 @@ async function bootstrap() {
         origin: '*',
         methods: 'GET, POST, PATCH, DELETE'
     });
-    await app.listen(3000);
+    await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
